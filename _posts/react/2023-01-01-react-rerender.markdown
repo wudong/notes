@@ -26,7 +26,7 @@ component can be passed tot it as `children` prop.
 
 Because `children` are just prop, they will not be effected by the state change and therefore will not rerender.
 
-```js
+```jsx
 
 const ComponentWithScroll = ({children})=> {
     const [scroll, setScroll] = useState(0);
@@ -71,7 +71,7 @@ itself are memorized**. In this case, the component will only rerender when the 
 
 # React Element
 When we do:
-```js
+```jsx
 const element = <Child/>
 ```
 it is what we called an **Element**. It a syntax sugar for function `React.createElement()` that returns a plain object 
@@ -80,7 +80,7 @@ that describes the component that we want to render.
 **Only** when we include it in the return result, which is a synonym for _render those stuff_ in function components, and 
 **only** after Parent component renders itself, will the actual render of `Child` component be triggered.
 
-```js
+```jsx
 const Parent = () => {
   const child = <Child/>
   return (
