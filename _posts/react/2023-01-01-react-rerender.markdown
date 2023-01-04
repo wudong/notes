@@ -106,7 +106,7 @@ An element is a plain object describing a **component instance** or **DOM node**
 An element is not an actual instance. Rather, it is a way to tell React what you want to see on the screen.
 
 It has only two field:
-- type: string | function | class
+- type: string \| function \| class
 - props: Object
 
 When an element's type is a string, it represents a DOM node with the tag name. When the type is a function or a class,
