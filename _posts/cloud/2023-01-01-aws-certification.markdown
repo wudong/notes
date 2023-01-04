@@ -1,7 +1,7 @@
 ---
 title:  "AWS Solution Architect Certificate Exam"
 date:   2023-01-03 22:35:46 +0000
-categories: aws certificate
+tags: aws certificate
 ---
 
 
