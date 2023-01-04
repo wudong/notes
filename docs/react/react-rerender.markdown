@@ -1,7 +1,6 @@
 ---
 title:  "Understanding React ReRender"
-date:   2023-01-04 00:00:00 +0000
-tags: react web
+parent: React
 ---
 
 # Why React ReRender?
