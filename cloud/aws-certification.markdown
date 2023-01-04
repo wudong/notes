@@ -1,6 +1,5 @@
 ---
-layout: post
-title:  "AWS Solution Architect Certificate"
+title:  "AWS Solution Architect Certificate Exam"
 date:   2023-01-03 22:35:46 +0000
 categories: aws certificate
 ---
@@ -10,7 +9,7 @@ categories: aws certificate
 
 ## EC2
 ### AMI: 
-- An AMI is an *image baseline* with an operating system and applications along with any *custom configuration*
+- An AMI is an **image baseline** with an operating system and applications along with any **custom configuration**
 - AWS Marketplace: online store that allows you to purchase AMI from trusted vendros.
 - Cumminit AMIs: created and shared by other AWS members.
 
@@ -31,6 +30,6 @@ categories: aws certificate
   - Partial Upfront
   - No Upfront
 - Scheduled: pay for the reservations on a recurring schedule, either daily, weekly, or monthly.
-  - changed even if it is not used
+  - changed even if it is not used.
 - Spot: bid for a unused EC2 compute resources.
 - On-Demand Capacity Reservations:
