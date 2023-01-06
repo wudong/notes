@@ -86,10 +86,11 @@ User data allows you to enter commands that will run during the first boot cycle
   an Authorization token.
   ```shell
     aws ecr get-login-password --region us-east-1 --no-include-email \ 
-        | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com    
+        | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com
   ```
   Token can be used for 12 hours.
-- Repository are objects within your registry that allow you to group together and secure different docker images.
+- Repository are objects within your registry that allow you to group
+  together and secure different docker images.
 
 ## Elastic Container Service for Kubernetes (EKS)
 - AWS maintains the k8s control plane, you manage the worker nodes.
@@ -99,7 +100,97 @@ User data allows you to enter commands that will run during the first boot cycle
 ## Elastic Beanstalk
 - An AWS managed service that take code and automatically provisions and deploy the required
   resources within AWS.
-- You can continue to support and maintain the environment as you would with a custom-built environment.
+- You can continue to support and maintain the environment as you
+  would with a custom-built environment.
 - You can perform maintenance tasks from the Elastic Beanstalk dashboard.
 - Elastic Beanstalk is free to use, just need to pay for the resources it provisioned. 
+
+### Core Components
+- Application version: reference to a version of deployable code, typically on S3.
+- Environment: an application version that has been deployed on AWS by
+  Beanstalk, an environment composed of ALL the resources created by
+  Beanstalk.
+- Environment Configuration: a collection of parameters and settings of an environment
+- Configuration Template: a baseline for creating a new, unique environment configuration
+- Environment Tier: 
+  - Web server environment
+  - Worker environment
+- Platform: is a culmination of comonents in which you can build your
+  application upon with Elastic Beanstalk.
+  - Docker, Packer Builder, Go, Java, etc.
+
+## AWS Batch
+- Jobs: unit of work that is to be run by AWS Batch.
+  - Jobs run on EC2 instances as a containerized application.
+  - Jobs can have different states: Submitted, Pending, Running, Failed, etc.
+- Job Definitions: how the job will run with configuration.
+- Job Queues: jobs that are scheduled are placed into a Job Queue until they run,
+  - multiple queues with different priorities
+  - both On-demand / Spot instances are supported -> AWS Batch can bid on your behalf for spot instances.
+- Compute Environments:
+  - Managed Environments -> created as ECS Cluster.
+  - Unmanaged Environments -> managed by you to create the necessary ECS Cluster.
+  
+
+# EC2 Auto Scaling
+
+Auto Sacling in AWS can be:
+- Amazon EC2 Auto Scaling
+- AWS **Auto Scaling Service** to scale:
+    - Amazon ECS
+    - DynamoDB
+    - Amazon Aurora
+
+## Launch configuration or launch template:
+- how *auto scaling group* builds new EC2 instances.
+- launch template is a newer / advanced version of the launch configuration.
+
+## Auto scaling group
+- the desired capacity and other limitations of the group using scaling policies
+- Where the group should scale resources, such as which AZ.
+
+# Elastic Load Balancing (ELB)
+- targets can be a fleet of EC2, lambda functions, a range of IP
+  addresses, orcontainers.
+- targets can cross AZs (regional)
+- ELB is managed by AWS, and by definition, elastic.
+
+## Load Balancer Types
+- Application Load Balancer: HTTP or HTTPs, advance routing, TLS
+  termination, and visibility features targeted at application
+  architectures
+- Network Load Balancer: 
+  - Ultra-high performance with very loa latencies.
+  - Operate at connection level, routing traffic to targets *within
+    your VPC*.
+  - Can handles millions of requests per second.
+- Classic Load Balancer: for existing EC2 classic environment. both
+  request and connection level.
+
+## Components
+- Listener: how your inbound connections are routed to your target
+  groups, based on *ports* and *protocols*, i.e. *condition*.
+- Target groups: configure ELB with a number of different groups, each
+  associated with a different listener configuration and associated rules.
+- Rules are associated with each listener to determine target group.
+    - ELB contains one or more listeners,
+    - One listener -> multiple rules 
+    - One rule -> multiple conditions
+    - All condition for a rule => single action.
+- health checks
+- Internet-Facing ELB: public DNS name / IP; target group does not
+  need to have public IPs.
+- Internal ELB: only internal IP; can only serve request that
+  originate from within your VPC.
+- ELB Nodes: 
+    - for each AZ selected, an ELB node needs to beplaced within that AZ.
+    - without it ELB cannot route to the AZ even if it is definied in
+      the target group.
+- Cross-Zone Load Balancing: 
+    - when disabled, each ELB in its associated AZ, will distrubited
+      traffic within the AZ only.
+    - when enabled, ELB will distributed all incoming traffic evenly
+      between all targets.
+
+
 

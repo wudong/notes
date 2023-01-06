@@ -6,4 +6,5 @@ has_children: true
 permalink: docs/react
 ---
 
-# AWS
+# React Notes
+
